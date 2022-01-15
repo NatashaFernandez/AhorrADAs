@@ -104,27 +104,21 @@ console.log(cantidadVentasComponente('Monitor ASC 543')); // 2
 const vendedoraDelMes = (mes, anio) => {
 
   let ventasPorVendedora = [];
-  let ventasFiltradas = ventas.filter(venta => venta.fecha.getMonth() == mes - 1 && venta.fecha.getFullYear() == anio);
-  let vendedoraMes;
+  let ventasFiltradas = ventas.filter(venta => venta.fecha.getMonth() == mes + 1 && venta.fecha.getFullYear() == anio);
   for (const vendedora of vendedoras) {
     ventasPorVendedora.push({ vendedora: vendedora, total: 0 });
   }
-
   for (const venta of ventasFiltradas) {
-
-    i = vendedoras.indexOf(venta.nombreVendedora)
-    ventasPorVendedora[i].total += precioMaquina(venta.componentes)
+    let i = vendedoras.indexOf(venta.nombreVendedora);//busca y devuelve el valor de la posicion de la vendedora dentro del array ventasPorVendedora
+    ventasPorVendedora[i].total += precioMaquina(venta.componentes);
   }
+  let vendedoraMes = ventasPorVendedora[0];
   for (const item of ventasPorVendedora) {
-
-    if (vendedoraMes === undefined) {
-      vendedoraMes = item;
-    }
-    else if (vendedoraMes.total < item.total) {
+    if (vendedoraMes.total < item.total) {
       vendedoraMes = item;
     }
   }
-  return vendedoraMes.vendedora
+  return vendedoraMes.vendedora;
 }
 
 console.log(vendedoraDelMes(1, 2019)); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
