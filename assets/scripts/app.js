@@ -103,6 +103,16 @@ const ventasMes = (mes, anio) => ventas.filter(venta => venta.fecha.getMonth() =
 
 console.log(ventasMes(1, 2019));
 
+//Obtiene el importe total de un mes
+const importeTotalMes = (mes, anio) => {
+  let importeTotal = 0;
+  for (const venta of ventasMes(mes, anio)) {
+    importeTotal += precioMaquina(venta.componentes)
+  }
+  return importeTotal;
+}
+
+console.log(importeTotalMes(1, 2019)); // 1570
 
 //vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
 
