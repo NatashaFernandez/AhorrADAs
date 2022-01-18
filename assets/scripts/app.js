@@ -98,13 +98,18 @@ const cantidadVentasComponente = (componente) => {
 
 console.log(cantidadVentasComponente('Monitor ASC 543')); // 2
 
+//ventasMes(mes, anio): Obtener las ventas de un mes. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
+const ventasMes = (mes, anio) => ventas.filter(venta => venta.fecha.getMonth() == mes - 1 && venta.fecha.getFullYear() == anio);
+
+console.log(ventasMes(1, 2019));
+
 
 //vendedoraDelMes(mes, anio), se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la vendedora que más vendió en plata en el mes. O sea no cantidad de ventas, sino importe total de las ventas. El importe de una venta es el que indica la función precioMaquina. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
 
 const vendedoraDelMes = (mes, anio) => {
 
   let ventasPorVendedora = [];
-  let ventasFiltradas = ventas.filter(venta => venta.fecha.getMonth() == mes - 1 && venta.fecha.getFullYear() == anio);
+  let ventasFiltradas = ventasMes(mes, anio);
   let vendedoraMes;
   for (const vendedora of vendedoras) {
     ventasPorVendedora.push({ vendedora: vendedora, total: 0 });
@@ -112,7 +117,7 @@ const vendedoraDelMes = (mes, anio) => {
 
   for (const venta of ventasFiltradas) {
 
-    i = vendedoras.indexOf(venta.nombreVendedora)
+    let i = vendedoras.indexOf(venta.nombreVendedora)
     ventasPorVendedora[i].total += precioMaquina(venta.componentes)
   }
   for (const item of ventasPorVendedora) {
@@ -128,3 +133,18 @@ const vendedoraDelMes = (mes, anio) => {
 }
 
 console.log(vendedoraDelMes(1, 2019)); // "Ada" (vendio por $670, una máquina de $320 y otra de $350)
+
+
+//ventasVendedora(nombre): Obtener las ventas totales realizadas por una vendedora sin límite de fecha.
+
+const ventasVendedora = (nombre) => {
+  let totalVendedora = 0;
+  for (const venta of ventas) {
+    if (venta.nombreVendedora == nombre) {
+      totalVendedora += precioMaquina(venta.componentes);
+    }
+  }
+  return totalVendedora;
+}
+
+console.log(ventasVendedora('Grace')); // 1220
