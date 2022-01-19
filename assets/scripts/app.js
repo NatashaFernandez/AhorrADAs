@@ -158,3 +158,10 @@ const ventasVendedora = (nombre) => {
 }
 
 console.log(ventasVendedora('Grace')); // 1220
+
+
+//huboVentas(mes, anio): que indica si hubo ventas en un mes determinado.
+//El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
+
+const huboVentas=(mes, anio)=> importeTotalMes(mes, anio) > 0
+console.log(huboVentas(3, 2019)); // false
