@@ -1,0 +1,54 @@
+:root{
+    /* main colors*/
+    --white: #fff;
+    --darkGray: #29262B;
+    --darkViolet: #3C3541;
+    --violet: #AC5FDB;
+    --lightViolet: #E3A2EE;
+    --fuchsia: #ff00f3;
+}
+/*fonts */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+
+/* Body */
+#background-color{
+    background-color: var(--darkViolet);
+}
+
+/* NavBar */
+.navbar{
+    background-color: var(--darkGray);
+}
+img.navbar-img{
+   width: 45px;
+}
+
+.navbar-position span{
+    color: var(--white);
+}
+.navbar-position:hover{
+background-color: var(--lightViolet);
+border-radius: 3px;
+}
+
+.navbar-title span{
+    font-size: xx-large;
+    font-family: 'Raleway', sans-serif;
+    color: var(--white);
+}
+.navbar-title span:hover{
+    color:#fff;
+}
+
+/* Balance Card */
+.card{
+    width: 18rem;
+}
+.card-body{
+    background-color: var(--darkGray);
+    color: var(--white) !important;
+}
+
+.text-ligther{
+    font-weight: lighter;
+}
